@@ -12,7 +12,8 @@ import { log } from "console";
     try {
         if(!localfilepath) return null
        const response = await cloudinary.uploader.upload(localfilepath, {resource_type: "auto"})
-        console.log("Uploaded to Cloudinary:", response.url);
+      //   console.log("Uploaded to Cloudinary:", response.url);
+         fs.unlinkSync(localfilepath) // Delete the local file after successful upload
         return response
     } catch (error) {
          fs.unlinkSync(localfilepath) // Delete the local file if upload fails
