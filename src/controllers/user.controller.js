@@ -182,7 +182,7 @@ const changeCurrentpassword = asyncHandler(async(req, res)=>{
         throw new ApiError(400, "Old password and new password are required");
     }
 
-    const user = await User.findById(req.user._id).select("+password");
+    const user = await User.findById(req.user._id)
 
     const isOldPasswordCorrect = await user.isPasswordCorrect(oldPassword);
     if(!isOldPasswordCorrect){
